@@ -2,8 +2,9 @@
   "name": "babel-plugin-transform-await-debug",
   "version": "0.1.0",
   "description": "Compile await to console.log await elapsed time",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "babel src -d lib",
     "test": "mocha test/index.js"
   },
   "keywords": [
@@ -17,6 +18,7 @@
   "license": "MIT",
   "devDependencies": {
     "assert": "^1.4.1",
+    "babel": "^6.23.0",
     "mocha": "^3.2.0"
   }
 }
