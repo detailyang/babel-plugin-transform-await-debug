@@ -2,7 +2,7 @@ var path = require("path");
 var fs = require("fs");
 var assert = require("assert");
 var transformFileSync = require("babel-core").transformFileSync;
-var plugin = require("../src");
+var plugin = require("../lib");
 
 function trim(str) {
   return str.replace(/^\s+|\s+$/, '');
