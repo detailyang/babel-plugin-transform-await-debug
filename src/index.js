@@ -5,12 +5,6 @@ module.exports = function(babel) {
   const t = babel.types;
   const AwaitExpressionVisitor = function(path) {
     if (path.awaitdebug) return;
-    if (path.scope.block.type == 'FunctionDeclaration') {
-      if (path.scope.block.id.name == placeholder) {
-        return;
-      }
-    }
-
     path.awaitdebug = true;
 
     var lineno = "@" + path.node.loc.start.line + ":" + path.node.loc.start.column;
