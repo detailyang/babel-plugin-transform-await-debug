@@ -4,7 +4,7 @@
 
 Every Node developers know Node is non-blocking IO model and ES2017 provide the `await`
 to allow an asynchronous, non-blocking method call to be performed in a similar way to an ordinary synchronous method call.
-Howevery many guys do not care `connect|read|write` timeout and so on. One day the ask that why My node application is hang :(.
+Howevery many guys do not care `connect|read|write` timeout and so on. One day they ask that why my node application is hang :(.
 The node event loop is waiting the io event happened forever without specify the timeout.
 This plugin compiles `await` to insert debug function to record elapsed time as the following:
 
