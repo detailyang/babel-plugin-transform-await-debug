@@ -1,4 +1,5 @@
 const placeholder = '__awaitdebug__';
+const __awaitdebug__ = require("./debug").__awaitdebug__;
 
 module.exports = function(babel) {
   const t = babel.types;
@@ -17,8 +18,12 @@ module.exports = function(babel) {
     path.replaceWith(
         t.awaitExpression(
           t.callExpression(
-            t.Identifier(placeholder), [path.node.argument,
-            t.binaryExpression("+", t.Identifier("__filename"), t.StringLiteral(lineno))])
+            t.Identifier(placeholder), [
+              t.binaryExpression("+", t.Identifier("__filename"), t.StringLiteral(lineno)),
+              path.node.argument,
+              t.Identifier("arguments")
+            ]
+          )
         )
     );
   };
@@ -32,18 +37,26 @@ module.exports = function(babel) {
             AwaitExpression: AwaitExpressionVisitor
           });
           path.unshiftContainer('body', [
-            t.functionDeclaration(t.Identifier(placeholder), [t.Identifier("arg"), t.Identifier("span")],
-              t.BlockStatement([
-                t.expressionStatement(t.callExpression(t.memberExpression(t.Identifier("console"), t.Identifier("time")), [t.Identifier("span")])),
-                t.variableDeclaration("const",
-                  [t.variableDeclarator(t.identifier("rv"),t.awaitExpression(t.Identifier("arg")))]),
-                t.expressionStatement(t.callExpression(t.memberExpression(t.Identifier("console"), t.Identifier("timeEnd")), [t.Identifier("span")])),
-                t.returnStatement(t.Identifier("rv"))
-              ]),
-            false, true)
-          ]);
+            t.variableDeclaration("const",
+              [
+                t.variableDeclarator(t.identifier(placeholder),
+                  t.memberExpression(
+                    t.callExpression(
+                      t.Identifier("require"),
+                        [
+                          t.StringLiteral("babel-plugin-transform-await-debug")
+                        ]
+                    ),
+                    t.Identifier(placeholder)
+                  )
+                )
+              ]
+            ),
+          ])
         }
       }
     }
   };
 }
+
+module.exports.__awaitdebug__ = __awaitdebug__;
