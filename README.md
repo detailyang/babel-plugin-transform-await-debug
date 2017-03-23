@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/detailyang/babel-plugin-transform-await-debug.svg?branch=master)](https://travis-ci.org/detailyang/babel-plugin-transform-await-debug)
+
 # Purpose
 
 Every Node developers know Node is non-blocking IO model and ES2017 provide the `await`
