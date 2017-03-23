@@ -13,7 +13,7 @@ describe('Tests babel-plugin-transform-debug', () => {
   fs.readdirSync(fixturesDir).map((caseName) => {
     it(`should ${caseName.split('-').join(' ')}`, () => {
       const fixtureDir = path.join(fixturesDir, caseName);
-      let actualPath = path.join(fixtureDir, 'actual.js');
+      var actualPath = path.join(fixtureDir, 'actual.js');
       const actual = transformFileSync(actualPath, {
         plugins: [
           plugin,
